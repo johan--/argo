@@ -28,16 +28,13 @@ RSpec.describe 'Item registration page', js: true do
 
     # click the button to add a row for a new item
     find('button.action-add', text: 'Add Row').click
-    find_all("tr.ui-widget-content[role='row']") # try to wait for the item entry row to show up, since it's added dynamically after clicking the add btn
 
     # fill out the source ID field
     find("td[aria-describedby='data_source_id']").click # the editable field isn't present till the table cell is clicked
-    find("td[aria-describedby='data_source_id'] input[name='source_id']") # wait for the editable field to show up in the table cell
     fill_in 'source_id', with: 'source:id1'
 
     # fill out the label field
     find("td[aria-describedby='data_label']").click # the editable field isn't present till the table cell is clicked
-    find("td[aria-describedby='data_label'] input[name='label']") # wait for the editable field to show up in the table cell
     fill_in 'label', with: 'object title'
 
     registration_params = {}
