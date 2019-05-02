@@ -29,7 +29,7 @@ before_script:
   - echo "Waiting for Fcrepo to start"
   - until curl --silent -XGET --fail -o /dev/null http://localhost:8983; do printf '.'; sleep 1; done
 
-script: RAILS_ENV=test bundle exec rake ci
+script: TT=1 RAILS_ENV=test bundle exec rake ci
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
