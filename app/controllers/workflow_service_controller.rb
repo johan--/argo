@@ -84,6 +84,8 @@ class WorkflowServiceController < ApplicationController
                    !active_lifecycle('submitted', druid: params[:pid], version: version)
 
     false
+  rescue Dor::Services::Client::Error
+    false
   end
 
   ##
@@ -97,5 +99,7 @@ class WorkflowServiceController < ApplicationController
     return false if active_lifecycle('opened', druid: params[:pid], version: version)
 
     true
+  rescue Dor::Services::Client::Error
+    false
   end
 end

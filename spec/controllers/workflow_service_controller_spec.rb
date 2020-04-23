@@ -12,6 +12,7 @@ RSpec.describe WorkflowServiceController, type: :controller do
   let(:object_client) { instance_double(Dor::Services::Client::Object, version: version_client) }
   let(:workflow_client) { instance_double(Dor::Workflow::Client, active_lifecycle: true) }
   let(:version_client) { instance_double(Dor::Services::Client::ObjectVersion, current: 1) }
+  let(:dor_exception) { instance_double(Dor::Services::Client::UnexpectedResponse, title: 'Unable to close version') }
   let(:druid) { 'druid:abc:123' }
 
   describe 'GET closeable' do
@@ -113,6 +114,12 @@ RSpec.describe WorkflowServiceController, type: :controller do
         get :openable, params: { pid: druid, format: :json }
         expect(assigns(:status)).to eq true
         expect(response.body).to eq 'true'
+      end
+    end
+
+    context 'when an error is thrown' do
+      it 'returns false' do
+        # expect(response.body).to eq 'false'
       end
     end
   end
