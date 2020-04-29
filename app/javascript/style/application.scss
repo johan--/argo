@@ -20,12 +20,11 @@ $logo-image: "../images/logo.png";
 @import "dialog";
 @import "document";
 @import "embargo";
+@import "icons";
 @import "index_queue";
 @import "profile";
 @import "search_results";
 @import "show";
-
-@import "item_registration";
 @import "impersonate_groups";
 @import "workflow_grid";
 @import "throbber";
